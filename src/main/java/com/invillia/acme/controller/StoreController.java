@@ -20,7 +20,7 @@ import java.util.Optional;
  * @author José Victor | jvas.2000@gmail.com
  */
 @RestController
-@RequestMapping("/stores")
+@RequestMapping("/store")
 public class StoreController {
 
 	private final StoreRepository repository;

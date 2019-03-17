@@ -1,5 +1,6 @@
 package com.invillia.acme.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -24,6 +25,7 @@ public class OrderItem {
 	private Integer quantity;
 
 	@ManyToOne
+	@JsonIgnore
 	private Order order;
 
 }
