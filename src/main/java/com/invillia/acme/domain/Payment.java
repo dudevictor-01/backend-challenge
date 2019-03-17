@@ -32,7 +32,6 @@ public class Payment {
 
 	private String creditCardNumber;
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime paymentDate;
 
 
