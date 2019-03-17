@@ -50,7 +50,7 @@ public class StoreController {
 	 */
 	@GetMapping("/search")
 	public List<Store> search(@RequestParam(required = false) String name, @RequestParam(required = false) String address) {
-		return repository.findByNameLikeAndAddress(name, address);
+		return repository.search(name, address);
 	}
 
 	@PostMapping("/")

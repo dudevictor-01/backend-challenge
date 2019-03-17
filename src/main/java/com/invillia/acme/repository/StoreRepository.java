@@ -20,7 +20,8 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
 	 * @param address address of the store
 	 * @return returns a list of stores
 	 */
-	@Query("select s from Store s where (:name is null or lower(s.name) like concat('%', lower(:name), '%')) "
+	@Query("select s from Store s where "
+			+ "(:name is null or lower(s.name) like concat('%', lower(:name), '%')) "
 			+ "and (:address is null or lower(s.address) like concat('%', lower(:address), '%'))")
-	List<Store> findByNameLikeAndAddress(String name, String address);
+	List<Store> search(String name, String address);
 }
