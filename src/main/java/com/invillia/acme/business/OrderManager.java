@@ -1,10 +1,13 @@
 package com.invillia.acme.business;
 
 import com.invillia.acme.domain.Order;
+import com.invillia.acme.domain.OrderStatus;
 import com.invillia.acme.repository.OrderRepository;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * Helps to manage CURD operations of an {@link Order}
@@ -29,6 +32,17 @@ public class OrderManager {
 		}
 
 		return this.repository.save(order);
+	}
+
+	/**
+	 * Update a status of a {@link Order}
+	 * @param orderId id of a order
+	 * @param orderStatus stats that the order will be updated to
+	 * @return retorns the actual state of the order
+	 */
+	public Optional<Order> updateStatus(Long orderId, OrderStatus orderStatus) {
+		this.repository.updateStatus(orderId, orderStatus);
+		return this.repository.findById(orderId);
 	}
 
 }
