@@ -1,6 +1,5 @@
 package com.invillia.acme.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.Entity;
