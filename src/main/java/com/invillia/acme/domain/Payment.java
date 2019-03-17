@@ -1,5 +1,6 @@
 package com.invillia.acme.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -24,6 +25,7 @@ public class Payment {
 	private Long id;
 
 	@OneToOne
+	@JsonIgnoreProperties("items")
 	private Order order;
 
 	@Enumerated(EnumType.STRING)
