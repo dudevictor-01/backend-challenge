@@ -7,6 +7,7 @@ import com.invillia.acme.domain.OrderItem;
 import com.invillia.acme.domain.OrderStatus;
 import com.invillia.acme.repository.OrderItemRepository;
 import com.invillia.acme.repository.OrderRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +31,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/order")
+@Api(description = "Set of operations for Order entity", tags = {"Order"})
 public class OrderController {
 
 	private final OrderManager manager;

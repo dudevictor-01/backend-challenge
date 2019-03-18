@@ -3,6 +3,7 @@ package com.invillia.acme.controller;
 import com.invillia.acme.business.RefundOrderItemManager;
 import com.invillia.acme.domain.RefundOrderItem;
 import com.invillia.acme.domain.Store;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/refunds")
+@Api(description = "Adds Refunds for an order", tags = {"Refunds"})
 public class RefundsController {
 
 	private final RefundOrderItemManager manager;

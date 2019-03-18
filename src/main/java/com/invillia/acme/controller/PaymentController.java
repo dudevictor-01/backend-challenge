@@ -4,6 +4,7 @@ import com.invillia.acme.business.PaymentManager;
 import com.invillia.acme.domain.Payment;
 import com.invillia.acme.domain.PaymentStatus;
 import com.invillia.acme.repository.PaymentRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/payment")
+@Api(description = "Manages payment for an order", tags = {"Payment"})
 public class PaymentController {
 
 	private final PaymentRepository repository;

@@ -3,6 +3,7 @@ package com.invillia.acme.controller;
 import com.invillia.acme.configuration.FixSwaggerPageable;
 import com.invillia.acme.domain.Store;
 import com.invillia.acme.repository.StoreRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/store")
+@Api(description = "Set of operations for Store entity", tags = {"Store"})
 public class StoreController {
 
 	private final StoreRepository repository;
