@@ -1,32 +1,35 @@
 # Invillia recruitment challenge
 
-[![Build Status](https://travis-ci.org/shelsonjava/invillia.svg?branch=master)](https://travis-ci.org/shelsonjava/invillia)
+## Tasks Implemented
+ 
+* [x] Create a **Store**
+* [x] Update a **Store** information
+* [x] Retrieve a **Store** by parameters
+* [x] Create an **Order** with items
+* [x] Create a **Payment** for an **Order**
+* [x] Retrieve an **Order** by parameters
+* [x] Refund **Order** or any **Order Item**
 
-![Invillia Logo](https://invillia.com/public/assets/img/logo-invillia.svg)
-[Invillia](https://https://www.invillia.com/) - A transformação começa aqui.
+## Business Rules implemented
 
-The ACME company is migrating their monolithic system to a microservice architecture and you’re responsible to build their MVP (minimum viable product)  .
-https://en.wikipedia.org/wiki/Minimum_viable_product
+* [x] A **Store** is composed by name and address
+* [x] An **Order** is composed by address, confirmation date and status
+* [x] An **Order Item** is composed by description, unit price and quantity.
+* [x] A **Payment** is composed by status, credit card number and payment date
+* [x] An **Order** just should be refunded until ten days after confirmation and the payment is concluded.
 
-Your challenge is:
-Build an application with those features described below, if you think the requirements aren’t detailed enough please leave a comment (portuguese or english) and proceed as best as you can.
+## Additional comments
 
-You can choose as many features you think it’s necessary for the MVP,  IT’S NOT necessary build all the features, we strongly recommend to focus on quality over quantity, you’ll be evaluated by the quality of your solution.
+As requested, the main focus in develop this challenge was in quality instead of quantity. 
+It was implemented focused in good practices, performance and clean code.
 
-If you think something is really necessary but you don’t have enough time to implement please at least explain how you would implement it.
+The swagger was added and setted in the application and can be accessed in the following URL:
+http://localhost:8080/swagger-ui.html
 
-## Tasks
+The application was pushed to heroku and can be accessed https://invillia-challenge.herokuapp.com/swagger-ui.html
 
-Your task is to develop one (or more, feel free) RESTful service(s) to:
-* Create a **Store**
-* Update a **Store** information
-* Retrieve a **Store** by parameters
-* Create an **Order** with items
-* Create a **Payment** for an **Order**
-* Retrieve an **Order** by parameters
-* Refund **Order** or any **Order Item**
-
-Fork this repository and submit your code with partial commits.
+For the Store and Order controller was decided to implement a search for retrieves data with pagination. 
+The reason for that is the amount of data in these two entities could be larger.
 
 The application was developed for using H2 DB just for tests and for simplification.
 But It is simple to migrate for any relational database.
