@@ -7,6 +7,7 @@ import com.invillia.acme.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Clock;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -22,6 +23,9 @@ public class RefundLogic {
 
 	@Autowired
 	private PaymentRepository paymentRepository;
+
+	@Autowired
+	private Clock clock;
 
 	/**
 	 * Tells if an refund request for an order is valid
@@ -41,7 +45,7 @@ public class RefundLogic {
 	}
 
 	private boolean isInTenDaysAfterConfirmation(Order order) {
-		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime now = LocalDateTime.now(clock);
 		return Duration.between(order.getConfirmationDate(), now).toDays() <= REFUND_LIMIT_DAYS;
 	}
 
