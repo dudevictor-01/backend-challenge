@@ -44,4 +44,7 @@ public class Order {
 	@NotNull
 	private Store store;
 
+	@OneToMany(mappedBy = "order")
+	private List<RefundOrderItem> refundOrderItems;
+
 }

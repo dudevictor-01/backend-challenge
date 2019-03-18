@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
 
 /**
@@ -18,6 +20,7 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Data
+@Table(uniqueConstraints = {@UniqueConstraint (columnNames = "order_id")})
 public class Payment {
 
 	@Id
