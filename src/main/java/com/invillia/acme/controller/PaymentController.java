@@ -33,7 +33,7 @@ public class PaymentController {
 
 	@PostMapping("/")
 	public Payment save(@RequestBody Payment payment) {
-		return this.repository.save(payment);
+		return this.manager.save(payment);
 	}
 
 	@GetMapping("/findByOrder/{orderId}")
