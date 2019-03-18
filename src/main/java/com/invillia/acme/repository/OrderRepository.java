@@ -2,6 +2,8 @@ package com.invillia.acme.repository;
 
 import com.invillia.acme.domain.Order;
 import com.invillia.acme.domain.OrderStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Defines the repository of {@link Order}
@@ -27,6 +28,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	 * @param startConfirmationDate start date of the confirmation
 	 * @param endConfirmationDate end date of the confirmation
 	 * @param status current status of the order
+	 * @param pageable pageable to query the orders
 	 * @return retorns a list of order that matches all the requested params
 	 */
 	@Query("select o from Order o where o.store.id = :storeId "
@@ -34,11 +36,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 			+ "and (:startConfirmationDate is null or o.confirmationDate >= :startConfirmationDate) "
 			+ "and (:endConfirmationDate is null or o.confirmationDate <= :endConfirmationDate) "
 			+ "and (:status is null or o.status = :status) ")
-	List<Order> search(Long storeId,
-			@Nullable String address,
-			@Nullable LocalDateTime startConfirmationDate,
-			@Nullable LocalDateTime endConfirmationDate,
-			@Nullable OrderStatus status);
+	Page<Order> search(Long storeId, @Nullable String address, @Nullable LocalDateTime startConfirmationDate,
+			@Nullable LocalDateTime endConfirmationDate, @Nullable OrderStatus status, Pageable pageable);
 
 	/**
 	 * Update de {@link OrderStatus} of an {@link Order}

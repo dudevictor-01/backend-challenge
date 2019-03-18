@@ -1,12 +1,15 @@
 package com.invillia.acme.controller;
 
 import com.invillia.acme.business.OrderManager;
+import com.invillia.acme.configuration.FixSwaggerPageable;
 import com.invillia.acme.domain.Order;
 import com.invillia.acme.domain.OrderItem;
 import com.invillia.acme.domain.OrderStatus;
 import com.invillia.acme.repository.OrderItemRepository;
 import com.invillia.acme.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -64,23 +68,21 @@ public class OrderController {
 	 * @return returns a list of orders that matches the params above
 	 */
 	@GetMapping("/search")
-	public List<Order> search(@RequestParam Long storeId,
+	@FixSwaggerPageable
+	public Page<Order> search(@RequestParam Long storeId,
 			@RequestParam(required = false) String address,
 			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startConfirmationDate,
 			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endConfirmationDate,
-			@RequestParam(required = false) OrderStatus status) {
-
-			return this.repository.search(storeId, address, startConfirmationDate, endConfirmationDate, status);
+			@RequestParam(required = false) OrderStatus status,
+			@ApiIgnore("Ignored because swagger ui shows the wrong params, "
+					+ "instead they are explained in the fix swagger pageable annotation") Pageable pageable
+			) {
+			return this.repository.search(storeId, address, startConfirmationDate, endConfirmationDate, status, pageable);
 	}
 
 	@PostMapping("updateStatus/{id}")
 	public Optional<Order> updateStatus(@PathVariable Long id, @RequestParam OrderStatus status) {
 		return this.manager.updateStatus(id, status);
-	}
-
-	@GetMapping("/")
-	public List<Order> findAll() {
-		return repository.findAll();
 	}
 
 }
